@@ -65,7 +65,7 @@ endfor
 
 " =====================spell checking for english and español
 set spell
-set spelllang=es,en_gb
+set spelllang=en_gb,es
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 "============================== NERD TREE CONFIGURATION======================================
 "START FIRST STARTIFY AND THEN NERDTREE
@@ -95,8 +95,8 @@ autocmd StdinReadPre * let s:std_in=1
 
 
 "============================== NEOVIDE CONFIGURATION=========================================
-let g:neovide_cursor_vfx_mode = "torpedo"
-let g:neovide_cursor_vfx_particle_density=10
+"let g:neovide_cursor_vfx_mode = "torpedo"
+"let g:neovide_cursor_vfx_particle_density=2
 let g:neovide_cursor_antialiasing=v:false
 
 "=====================================FUNTION FOR AUTOMATIC FORMATTING LATEX========================================================
@@ -137,6 +137,18 @@ set tabstop=4 softtabstop=4
 set textwidth=200
 filetype plugin on
 syntax on
+"set rtp+=C:/Users/Luis\ Alfredo/AppData/Local/nvim-data/tabnine-vim
+
+"=============================================================================================================
+"OPTIONS FOR LAGUAGETOOL GRAMMAR CHECKERJ
+"C:/Users/Luis\ Alfredo/.languagetool/LanguageTool-5.4/languagetool-server.jar
+let g:languagetool_server='C:/tools/.languagetool/languagetool-server.jar'
+"let g:languagetool_lang=en_gb
+let g:languagetool_server_jar='C:/tools/.languagetool/languagetool-server.jar'
+"let g:languagetool_server_command='echo "Server Started"'
+autocmd Filetype tex LanguageToolSetUp
+autocmd User LanguageToolCheckDone LanguageToolSummary
+let g:languagetool_disable_rules='WHITESPACE_RULE,EN_QUOTES,COMMA_PARENTHESIS_WHITESPACE,CURRENCY,EN_UNPAIRED_BRACKETS,WORD_CONTAINS_UNDERSCORE'
 "=============================================================================================================
 "options for the  folding in vimtex
 

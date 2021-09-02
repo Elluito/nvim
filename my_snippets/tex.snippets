@@ -38,6 +38,10 @@ $1
 .\] $0
 endsnippet
 
+context "math()"
+snippet approx "\approx" bA
+\approx
+endsnippet
 
 snippet '([A-Za-z])(\d)' "auto subscript" wrA
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
@@ -50,8 +54,6 @@ endsnippet
 snippet jcite "cite command" iA
 \cite{$1}$0
 endsnippet
-
-
 
 context "math()"
 snippet inset "belonging to set" iA
@@ -400,7 +402,7 @@ snippet >= "geq" iA
 endsnippet
 
 context "math()"
-snippet EE "geq" iA
+snippet EE "exist" iA
 \exists 
 endsnippet
 
@@ -451,7 +453,7 @@ x_{m}
 endsnippet
 
 snippet R0+ "R0+" iA
-\\R_0^+
+\mathbb{R}_0^+
 endsnippet
 
 snippet plot "Plot" w
@@ -584,6 +586,7 @@ snippet cc "subset" Ai
 \subset 
 endsnippet
 
+context "math()"
 snippet notin "not in " iA
 \not\in 
 endsnippet
@@ -594,7 +597,7 @@ snippet inn "in " iA
 endsnippet
 
 snippet NN "n" iA
-\N
+\mathbb{N}
 endsnippet
 
 snippet Nn "cap" iA
@@ -824,6 +827,16 @@ snippet  Sigma   "Sigma" iA
 \Sigma
 endsnippet
   
+context "math()"
+snippet  rho   "rho" iA
+\rho
+endsnippet
+
+ 
+context "math()"
+snippet  Rho   "Rho" iA
+\Rho
+endsnippet
 
 context "math()"
 snippet  xsilon   "epsilon" iA

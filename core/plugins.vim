@@ -346,10 +346,21 @@ Plug 'junegunn/limelight.vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'subnut/vim-iawriter'
 
+"}}
+"{{Thesaurus plug in (synonyms)
 
+
+Plug 'ron89/thesaurus_query.vim'
+"}}
+"{{Grammar's plug-in
+
+
+Plug 'vigoux/LanguageTool.nvim'
 call plug#end()
 "}}
+"}}
 "}
+
 
 "{ Pluing settings
 "{{ Vim-plug settings
