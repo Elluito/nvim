@@ -10,7 +10,7 @@
 "                                                                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The above ASCII art is generated using service provided in this webpage:
-" https://www.kammerl.de/ascii/AsciiSignature.php.
+" https://www.kammerl.de/ascii/AsciiSignature.php .
 
 "{ Header and Licence
 "{{ header info
@@ -49,6 +49,7 @@
 "}}
 "}
 
+
 "{ Main configurations
 let g:config_file_list = ['variables.vim',
   \ 'options.vim',
@@ -63,11 +64,12 @@ for s:fname in g:config_file_list
   execute printf('source %s/core/%s', g:nvim_config_root, s:fname)
 endfor
 
+set guifont=font:h18
 " =====================spell checking for english and español
 set spell
 set spelllang=en_gb,es
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-"============================== NERD TREE CONFIGURATION======================================
+"{ NERD TREE CONFIGURATION
 "START FIRST STARTIFY AND THEN NERDTREE
 autocmd VimEnter *
             \   if !argc()
@@ -75,7 +77,6 @@ autocmd VimEnter *
             \ |   NERDTree
             \ |   wincmd w
             \ | endif
-
 
 " Start NERDTree and leave the cursor in it.
 autocmd VimEnter * NERDTree
@@ -91,17 +92,19 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+"Show hidden files
+let NERDTreeShowHidden=1
 
+"}}
 
-
-"============================== NEOVIDE CONFIGURATION=========================================
+"{============================== NEOVIDE CONFIGURATION=========================================
 "let g:neovide_cursor_vfx_mode = "torpedo"
 "let g:neovide_cursor_vfx_particle_density=2
 let g:neovide_cursor_antialiasing=v:false
+"}
+"{=====================================FUNTION FOR AUTOMATIC FORMATTING LATEX========================================================
 
-"=====================================FUNTION FOR AUTOMATIC FORMATTING LATEX========================================================
-
-" Reformat lines (getting the spacing correct) {{{
+" Reformat lines (getting the spacing correct) 
 fun! TeX_fmt()
     if (getline(".") != "")
     let save_cursor = getpos(".")
@@ -129,7 +132,7 @@ endfun
 cmap laformat :call TeX_fmt()<CR>
 "==============================================================================================
 "}
-"OTHER OPTIONS
+"{OTHER OPTIONS
 set incsearch 
 set scrolloff=8
 set signcolumn=yes
@@ -138,19 +141,21 @@ set textwidth=200
 filetype plugin on
 syntax on
 "set rtp+=C:/Users/Luis\ Alfredo/AppData/Local/nvim-data/tabnine-vim
+"}
+"=============================================================================================================
+"{OPTIONS FOR LAGUAGETOOL GRAMMAR CHECKERJ
+"C:/Users/Luis\ Alfredo/.languagetool/LanguageTool-5.4/languagetool-server.jar
+"let g:languagetool_server='C:/tools/.languagetool/languagetool-server.jar'
+""let g:languagetool_lang=en_gb
+"let g:languagetool_server_jar='C:/tools/.languagetool/languagetool-server.jar'
+""let g:languagetool_server_command='echo "Server Started"'
+"autocmd Filetype tex LanguageToolSetUp
+"autocmd User LanguageToolCheckDone LanguageToolSummary
+"let g:languagetool_disable_rules='WHITESPACE_RULE,EN_QUOTES,COMMA_PARENTHESIS_WHITESPACE,CURRENCY,EN_UNPAIRED_BRACKETS,WORD_CONTAINS_UNDERSCORE'
+"}
 
 "=============================================================================================================
-"OPTIONS FOR LAGUAGETOOL GRAMMAR CHECKERJ
-"C:/Users/Luis\ Alfredo/.languagetool/LanguageTool-5.4/languagetool-server.jar
-let g:languagetool_server='C:/tools/.languagetool/languagetool-server.jar'
-"let g:languagetool_lang=en_gb
-let g:languagetool_server_jar='C:/tools/.languagetool/languagetool-server.jar'
-"let g:languagetool_server_command='echo "Server Started"'
-autocmd Filetype tex LanguageToolSetUp
-autocmd User LanguageToolCheckDone LanguageToolSummary
-let g:languagetool_disable_rules='WHITESPACE_RULE,EN_QUOTES,COMMA_PARENTHESIS_WHITESPACE,CURRENCY,EN_UNPAIRED_BRACKETS,WORD_CONTAINS_UNDERSCORE'
-"=============================================================================================================
-"options for the  folding in vimtex
+"{options for the  folding in vimtex
 
 
 set fillchars=fold:\ 
@@ -163,3 +168,4 @@ let g:vimsyn_folding='af'
 let g:xml_syntax_folding = 1
 let g:php_folding = 1
 let g:perl_fold = 1
+"}

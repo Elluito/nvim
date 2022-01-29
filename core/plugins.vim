@@ -352,10 +352,22 @@ Plug 'subnut/vim-iawriter'
 
 Plug 'ron89/thesaurus_query.vim'
 "}}
+"{{ Jupyter Notebook
+"Plug 'ahmedkhalf/jupyter-nvim', { 'do': ':UpdateRemotePlugins' }
+
+"lua << EOF
+"  require("jupyter-nvim").setup {
+"    -- your configuration comes here
+"    -- or leave it empty to use the default settings
+"    -- refer to the configuration section below
+" }
+"EOF
+"}}
+
 "{{Grammar's plug-in
 
 
-Plug 'vigoux/LanguageTool.nvim'
+"Plug 'vigoux/LanguageTool.nvim'
 call plug#end()
 "}}
 "}}
@@ -961,6 +973,11 @@ if ( g:is_win || g:is_mac ) && executable('latex')
     endfunction
   endif
 endif
+"{ Folding LaTeX
+let g:vimtex_fold_enabled =1
+let g:vimtex_fold_comments =1
+let g:vimtex_fold_preamble =0
+" }
 "}}
 
 "{{ UI: Status line, look
@@ -1109,14 +1126,20 @@ nnoremap <leader>dp :<C-U>GdbStartPDB python -m pdb %<CR>
 
 
 
-"""""""""""""""""""""""""""""""" MarkDown in vimwiki""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""" Markdown in vimwiki""""""""""""""""""""""""""
+
 let g:vimwiki_list = [{'path': '~/OneDrive/Obsidian/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
-augroup markdown
-    au!
-    au BufNewFile,BufRead *.md,*.markdown,*.mmd setlocal filetype=ghmarkdown
-    au BufNewFile,BufRead *.md,*.markdown,*.mmd UltiSnipsAddFiletypes ghmarkdown.markdown
-augroup END
+"augroup markdown
+"    au!
+"    au BufNewFile,BufRead *.md,*.markdown,*.mmd setfiletype=markdown
+"    au BufNewFile,BufRead *.md,*.markdown,*.mmd UltiSnipsAddFiletypes markdown.markdown
+"augroup END
+
+"This is for markdown to actually work apparently. Taken from https://github.com/vimwiki/vimwiki/issues/95
+let g:vimwiki_global_ext=0
+
+
 """"""""""""""""""""""""""""""iron.nvim settings""""""""""""""""""""""""""""""
 lua << EOF
 local iron = require('iron')
