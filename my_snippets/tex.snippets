@@ -17,6 +17,7 @@ snippet box "Box"
 `!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
 $0
 endsnippet
+
 snippet beg "begin{} / end{}" bA
 \begin{$1}
 	$0
@@ -59,29 +60,30 @@ context "math()"
 snippet inset "belonging to set" iA
 \in {$1}$2
 endsnippet
-
+context "math()"
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
-
+context "math()"
 snippet / "Fraction" iA
 \\frac{${VISUAL}}{$1}$0
 endsnippet
 
-
+context "math()"
 snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
 \vec{`!p snip.rv=match.group(1)`}
 endsnippet 
 
-snippet template "Basic template" b
+snippet tpl_article "Basic template" b
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage[english]{babel}
 \usepackage{amsmath, amssymb}
-\usepackage[backend=biber,citestyle=nature,style=nature]{biblatex}
-\addbibresource{Biblio.bib}
+\usepackage[sort,square,numbers]{natbib}
+%\usepackage[backend=biber,citestyle=nature,style=nature]{biblatex}
+%\addbibresource{Biblio.bib}
 % figure support
 \usepackage{import}
 \usepackage{xifthen}
@@ -96,11 +98,8 @@ snippet template "Basic template" b
 
 \pdfsuppresswarningpagegroup=1
 \usepackage{todonotes}
-
 \DeclareUnicodeCharacter{2212}{-}
-
 \newcounter{mycomment}
-
 \newcommand{\mycomment}[2][]{%
 % initials of the author (optional) + note in the margin
 \refstepcounter{mycomment}{%\setstretch{0.7}
@@ -118,10 +117,12 @@ snippet template "Basic template" b
 
 \begin{document}
 \maketitle
+\begin{abstract}
 	$0
-
+\end{abstract}
 \nocite{*}
 \printbibliography
+\bibliography{Reff.bib}
 \end{document}
 endsnippet
 

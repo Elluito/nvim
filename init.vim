@@ -139,6 +139,7 @@ set signcolumn=yes
 set tabstop=4 softtabstop=4       
 set textwidth=200
 filetype plugin on
+set nocompatible
 syntax on
 "set rtp+=C:/Users/Luis\ Alfredo/AppData/Local/nvim-data/tabnine-vim
 "}

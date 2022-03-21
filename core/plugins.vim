@@ -54,6 +54,9 @@ endif
 
 " Python indent (follows the PEP8 style)
 Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
+" Python autocompletion with doeplete
+Plug 'zchee/deoplete-jedi'
+
 
 " Python-related text object
 Plug 'jeetsukumaran/vim-pythonsense'
@@ -368,13 +371,17 @@ Plug 'ron89/thesaurus_query.vim'
 
 
 "Plug 'vigoux/LanguageTool.nvim'
-call plug#end()
+ 
 "}}
+"{{ Comment plugin
+Plug 'preservim/nerdcommenter'
+"}}
+call plug#end()
 "}}
 "}
 
 
-"{ Pluing settings
+"{Plugin settings
 "{{ Vim-plug settings
 " Use shortnames for common vim-plug command to reduce typing.
 " To use these shortcut: first activate command line with `:`, then input the
@@ -571,7 +578,9 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+"{{
 
+"}}
 
 
 
@@ -973,13 +982,40 @@ if ( g:is_win || g:is_mac ) && executable('latex')
     endfunction
   endif
 endif
-"{ Folding LaTeX
+"{{ Folding LaTeX
 let g:vimtex_fold_enabled =1
 let g:vimtex_fold_comments =1
 let g:vimtex_fold_preamble =0
-" }
 "}}
+"}}
+"{{Nerd Commenter plugin  settings
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
 
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
+"}}
 "{{ UI: Status line, look
 """""""""""""""""""""""""""vim-airline setting""""""""""""""""""""""""""""""
 " Set airline theme to a random one if it exists
@@ -1129,12 +1165,12 @@ nnoremap <leader>dp :<C-U>GdbStartPDB python -m pdb %<CR>
 """""""""""""""""""""""""""""""" Markdown in vimwiki""""""""""""""""""""""""""
 
 let g:vimwiki_list = [{'path': '~/OneDrive/Obsidian/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-"augroup markdown
-"    au!
-"    au BufNewFile,BufRead *.md,*.markdown,*.mmd setfiletype=markdown
-"    au BufNewFile,BufRead *.md,*.markdown,*.mmd UltiSnipsAddFiletypes markdown.markdown
-"augroup END
+                     \ 'syntax': 'markdown', 'ext': '.md'}]
+augroup markdown
+    au!
+    au BufNewFile, BufRead *.md,*.markdown,*.mmd setfiletype=markdown
+    au BufNewFile, BufRead *.md,*.markdown,*.mmd UltiSnipsAddFiletypes .md "markdown.markdown
+augroup END
 
 "This is for markdown to actually work apparently. Taken from https://github.com/vimwiki/vimwiki/issues/95
 let g:vimwiki_global_ext=0
@@ -1152,3 +1188,4 @@ iron.core.set_config{
 EOF
 "}}
 "}
+
